@@ -10,5 +10,5 @@ When build is complete, start with
 `./minecraft-client-1.13`
 
 From the Minecraft launcher, edit your profile and change the executable to 
-`<absolute-path-to-this-repo>/minecraft-runtim-1.13`
+`<absolute-path-to-this-repo>/minecraft-runtime-1.13`
 
