@@ -52,37 +52,81 @@ cmake --build . || exit 1
 strip libopenal.so || exit 1
 cp libopenal.so ${LIBS}/ || exit 1
 
+echo
+echo Building bx
+echo ===========
+echo
 
 cd ${ROOT}/bx
 gmake clean
 gmake freebsd-release64 || exit 1
 
+echo
+echo Building bimg
+echo =============
+echo
+
 cd ${ROOT}/bimg
 gmake clean
 gmake freebsd-release64 || exit 1
 
+echo
+echo Building bgfx
+echo =============
+echo
+
 cd ${ROOT}/bgfx
 rm -fr .build
 ../bx/tools/bin/bsd/genie --with-shared-lib --with-tools --gcc=freebsd gmake || exit 1
-gmake -R -C .build/projects/gmake-freebsd config=release64 CFLAGS="-U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0" bgfx-shared-lib || exit 1
-gmake -R -C .build/projects/gmake-freebsd config=release64 geometryc || exit 1
-gmake -R -C .build/projects/gmake-freebsd config=release64 texturec || exit 1
-gmake -R -C .build/projects/gmake-freebsd config=release64 texturev || exit 1
-gmake -R -C .build/projects/gmake-freebsd config=release64 shaderc || exit 1
+echo
+echo Building bgfx: bgfx-shared-lib
+echo ==============================
+echo
+gmake -R -C .build/projects/gmake-freebsd config=release64 CFLAGS="-I/usr/local/include -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0" bgfx-shared-lib || exit 1
+echo
+echo Building bgfx: geometryc
+echo ========================
+echo
+gmake -R -C .build/projects/gmake-freebsd config=release64 CFLAGS="-I/usr/local/include" geometryc || exit 1
+echo
+echo Building bgfx: texturec
+echo =======================
+echo
+gmake -R -C .build/projects/gmake-freebsd config=release64 CFLAGS="-I/usr/local/include" texturec || exit 1
+echo
+echo Building bgfx: texturev
+echo =======================
+echo
+gmake -R -C .build/projects/gmake-freebsd config=release64 CFLAGS="-I/usr/local/include" texturev || exit 1
+echo
+echo Building bgfx: shaderc
+echo ======================
+echo
+gmake -R -C .build/projects/gmake-freebsd config=release64 CFLAGS="-I/usr/local/include" shaderc || exit 1
 strip .build/freebsd/bin/libbgfx-shared-libRelease.so || exit 1
 cp .build/freebsd/bin/libbgfx-shared-libRelease.so ${LIBS}/ || exit 1
 
+
+echo
+echo Building glfw
+echo =============
+echo
 
 cd ${ROOT}/glfw
 rm -fr build
 mkdir build
 cd build
-cmake -DBUILD_SHARED_LIBS=ON -DGLFW_BUILD_EXAMPLES=OFF -DGLFW_BUILD_TESTS=OFF -DGLFW_BUILD_DOCS=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_FLAGS="-U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0" .. || exit 1
+cmake -DBUILD_SHARED_LIBS=ON -DGLFW_BUILD_EXAMPLES=OFF -DGLFW_BUILD_TESTS=OFF -DGLFW_BUILD_DOCS=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_FLAGS="-I/usr/local/include -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0" .. || exit 1
 cmake --build . || exit 1
 cd src
 strip libglfw.so
 cp libglfw.so ${LIBS}/ || exit 1
 
+
+echo
+echo Building lwjgl3
+echo ===============
+echo
 
 cd ${ROOT}/lwjgl3
 ant clean
