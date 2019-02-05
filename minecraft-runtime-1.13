@@ -2,40 +2,52 @@
 
 ROOT=/home/johannes/dev/lwjgl3-port
 
-LWJGL_JLP_OVRD="${ROOT}/native-libs:${ROOT}/lwjgl3/bin/libs"
+LWJGL_JLP_OVRD="${ROOT}/native-libs:${ROOT}/lwjgl3/bin/libs:/usr/local/lib:/usr/lib"
+
 LWJGL_OVRD="${ROOT}/lwjgl3/bin/RELEASE/lwjgl/lwjgl.jar"
-# LWJGL_OAL_OVRD="${ROOT}/lwjgl3/bin/RELEASE/lwjgl-openal/lwjgl-openal.jar"
 LWJGL_OGL_OVRD="${ROOT}/lwjgl3/bin/RELEASE/lwjgl-opengl/lwjgl-opengl.jar"
+LWJGL_OAL_OVRD="${ROOT}/lwjgl3/bin/RELEASE/lwjgl-openal/lwjgl-openal.jar"
 LWJGL_GLFW_OVRD="${ROOT}/lwjgl3/bin/RELEASE/lwjgl-glfw/lwjgl-glfw.jar"
 LWJGL_STB_OVRD="${ROOT}/lwjgl3/bin/RELEASE/lwjgl-stb/lwjgl-stb.jar"
+LWJGL_JEM_OVRD="${ROOT}/lwjgl3/bin/RELEASE/lwjgl-jemalloc/lwjgl-jemalloc.jar"
 
 export JAVA_HOME=/usr/local/openjdk8
 
 echo CMD IN: ${@}
 
 build_classpath() {
+    echo build_classpath called with $@
     local IFS=":"
     for p in ${1}
     do
         case "${p}" in
-        *lwjgl-3.1.6.jar)
-            cp="${cp}:${LWJGL_OVRD}"
-            ;;
-	# *lwjgl-openal*)
-        #    cp="${cp}:${LWJGL_OAL_OVRD}"
-        #    ;;
-	*lwjgl-opengl*)
-           cp="${cp}:${LWJGL_OGL_OVRD}"
-           ;;
-	*lwjgl-glfw*)
-           cp="${cp}:${LWJGL_GLFW_OVRD}"
-           ;;
-	*lwjgl-stb*)
-           cp="${cp}:${LWJGL_STB_OVRD}"
-           ;;
-        *)
-            cp="${cp}:${p}"
-            ;;
+            *lwjgl-3.1.6.jar)
+		echo set $p = ${LWJGL_OVRD}
+		cp="${cp}:${LWJGL_OVRD}"
+		;;
+	    *lwjgl-opengl*)
+		echo set $p = ${LWJGL_OGL_OVRD}
+		cp="${cp}:${LWJGL_OGL_OVRD}"
+		;;
+	    *lwjgl-openal*)
+		echo set $p = ${LWJGL_OAL_OVRD}
+		cp="${cp}:${LWJGL_OAL_OVRD}"
+		;;
+	    *lwjgl-glfw*)
+		echo set $p = ${LWJGL_GLFW_OVRD}
+		cp="${cp}:${LWJGL_GLFW_OVRD}"
+		;;
+	    *lwjgl-stb*)
+		echo set $p = ${LWJGL_STB_OVRD}
+		cp="${cp}:${LWJGL_STB_OVRD}"
+		;;
+	    *lwjgl-jemalloc*)
+		echo set $p = ${LWJGL_JEM_OVRD}
+		cp="${cp}:${LWJGL_JEM_OVRD}"
+		;;
+            *)
+		cp="${cp}:${p}"
+		;;
         esac
     done
     cp=${cp#?}
@@ -43,8 +55,10 @@ build_classpath() {
 
 for var in "${@}"
 do
+    echo for var ${var}
     case "${var}" in
     -Djava.library*)
+	echo set library path
         args="${args} -Djava.library.path=${LWJGL_JLP_OVRD}"
         ;;
     *lwjgl-opengl*)

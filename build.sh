@@ -2,7 +2,7 @@
 
 echo 
 echo Make sure you install required dependencies by executing
-echo pkg install minecraft-client dyncall assimp minizip libXcursor libXinerama xinput gtk3 gcc gmake cmake pkgconf apache-ant 
+echo pkg install dyncall assimp minizip libXcursor libXinerama xinput gtk3 gcc gmake cmake pkgconf apache-ant 
 echo 
 # (there might be more that I've missed)
 
@@ -20,11 +20,6 @@ git clone -b 'freebsd-3.1.6' ${GIT_OPTIONS} git@github.com:johalun/lwjgl3.git
 
 # lwjgl3 dependency
 git clone -b 'lwjgl-3.1.6' ${GIT_OPTIONS} git@github.com:johalun/glfw.git
-
-# Some fail with clang, use gcc across the board for simplicity
-# export CPP=gcc
-# export CC=gcc
-# export CXX=g++
 
 echo
 echo Building glfw
