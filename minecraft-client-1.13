@@ -16,4 +16,4 @@ if [ ! -e "${HOME}/.minecraft/notified-runtime" ] ; then
 fi
 
 exec ${JAVA_HOME}/bin/java -Djava.nio.file.spi.DefaultFileSystemProvider=sun.nio.fs.BsdFileSystemProvider \
- -jar /usr/local/share/minecraft-client/Minecraft.jar
+ -Dos.name=Linux -jar /usr/local/share/minecraft-client/Minecraft.jar

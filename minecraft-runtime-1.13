@@ -1,10 +1,10 @@
 #!/bin/sh
 
-ROOT=/home/johannes/dev/lwjgl3-port/
+ROOT=/home/johannes/dev/lwjgl3-port
 
-LWJGL_JLP_OVRD="${ROOT}/native-libs:${ROOT}/lwjgl3/bin/libs/"
+LWJGL_JLP_OVRD="${ROOT}/native-libs:${ROOT}/lwjgl3/bin/libs"
 LWJGL_OVRD="${ROOT}/lwjgl3/bin/RELEASE/lwjgl/lwjgl.jar"
-LWJGL_OAL_OVRD="${ROOT}/lwjgl3/bin/RELEASE/lwjgl-openal/lwjgl-openal.jar"
+# LWJGL_OAL_OVRD="${ROOT}/lwjgl3/bin/RELEASE/lwjgl-openal/lwjgl-openal.jar"
 LWJGL_OGL_OVRD="${ROOT}/lwjgl3/bin/RELEASE/lwjgl-opengl/lwjgl-opengl.jar"
 LWJGL_GLFW_OVRD="${ROOT}/lwjgl3/bin/RELEASE/lwjgl-glfw/lwjgl-glfw.jar"
 LWJGL_STB_OVRD="${ROOT}/lwjgl3/bin/RELEASE/lwjgl-stb/lwjgl-stb.jar"
@@ -21,9 +21,9 @@ build_classpath() {
         *lwjgl-3.1.6.jar)
             cp="${cp}:${LWJGL_OVRD}"
             ;;
-	*lwjgl-openal*)
-           cp="${cp}:${LWJGL_OAL_OVRD}"
-           ;;
+	# *lwjgl-openal*)
+        #    cp="${cp}:${LWJGL_OAL_OVRD}"
+        #    ;;
 	*lwjgl-opengl*)
            cp="${cp}:${LWJGL_OGL_OVRD}"
            ;;

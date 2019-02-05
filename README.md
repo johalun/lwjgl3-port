@@ -1,14 +1,20 @@
 # lwjgl3-port
-FreeBSD port of LWJGL3
+FreeBSD port of LWJGL3 (only includes dependencies needed for Minecraft client)
 
 ### Notes
 
-Build will fail on FreeBSD 11 because the binary `genie` is built for FreeBSD 12. The two options are, build a new one from repo https://github.com/bkaradzic/GENie or use the Linux version by changing the path to genie in the Makefile.
+Step 1
+Read through the `build.sh` script. Install binary dependencies if necessary. 
 
-When build is complete, start with
+
+Step 2
+Execute `./build.sh`
+
+
+When build is complete, set `ROOT` in `minecraft-runtime-1.13` to this folder and start with
 
 `./minecraft-client-1.13`
 
 From the Minecraft launcher, edit your profile and change the executable to 
-`<absolute-path-to-this-repo>/minecraft-runtime-1.13`
+`<absolute-path-to-this-folder>/minecraft-runtime-1.13`
 
