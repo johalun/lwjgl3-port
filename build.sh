@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 
 echo 
-echo Make sure you install required dependencies by executing
-echo pkg install dyncall assimp minizip libXcursor libXinerama xinput gtk3 gcc gmake cmake pkgconf apache-ant 
+echo Make sure you install required build dependencies by executing
+echo pkg install git cmake libX11 libXrandr libXinerama libXcursor xinput apache-ant dyncall
 echo 
 # (there might be more that I've missed)
 
@@ -15,11 +15,23 @@ echo Cloning dependencies...
 GIT_OPTIONS="--single-branch --depth 1"
 #GIT_OPTIONS=""
 
-# Main repo
-git clone -b 'freebsd-3.1.6' ${GIT_OPTIONS} git@github.com:johalun/lwjgl3.git
+# lwjgl3 dependency
+git clone -b 1.18.2 git@github.com:johalun/openal-soft.git
 
 # lwjgl3 dependency
-git clone -b 'lwjgl-3.1.6' ${GIT_OPTIONS} git@github.com:johalun/glfw.git
+git clone -b 'freebsd' ${GIT_OPTIONS} git@github.com:johalun/glfw.git
+
+# main repo
+git clone -b 'freebsd-3.1.6' ${GIT_OPTIONS} git@github.com:johalun/lwjgl3.git
+
+cd openal-soft
+rm -fr build
+mkdir build
+cd build
+cmake -DALSOFT_REQUIRE_OSS=ON -DALSOFT_EMBED_HRTF_DATA=YES -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_FLAGS="-U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0" .. || exit 1
+cmake --build . || exit 1
+strip libopenal.so || exit 1
+cp libopenal.so ${LIBS}/ || exit 1
 
 echo
 echo Building glfw
