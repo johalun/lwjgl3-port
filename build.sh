@@ -22,13 +22,13 @@ git clone -b 1.18.2 git@github.com:johalun/openal-soft.git
 git clone -b 'freebsd' ${GIT_OPTIONS} git@github.com:johalun/glfw.git
 
 # main repo
-git clone -b 'freebsd-3.1.6' ${GIT_OPTIONS} git@github.com:johalun/lwjgl3.git
+git clone -b 'freebsd-3.2.1' ${GIT_OPTIONS} git@github.com:johalun/lwjgl3.git
 
 cd openal-soft
 rm -fr build
 mkdir build
 cd build
-cmake -DALSOFT_REQUIRE_OSS=ON -DALSOFT_EMBED_HRTF_DATA=YES -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_FLAGS="-U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0" .. || exit 1
+cmake -DALSOFT_REQUIRE_OSS=ON -DALSOFT_EMBED_HRTF_DATA=YES -DCMAKE_BUILD_TYPE=Release .. || exit 1
 cmake --build . || exit 1
 strip libopenal.so || exit 1
 cp libopenal.so ${LIBS}/ || exit 1
@@ -41,7 +41,7 @@ echo
 cd ${ROOT}/glfw
 mkdir -p build
 cd build
-cmake -DBUILD_SHARED_LIBS=ON -DGLFW_BUILD_EXAMPLES=OFF -DGLFW_BUILD_TESTS=OFF -DGLFW_BUILD_DOCS=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_FLAGS="-I/usr/local/include -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0" .. || exit 1
+cmake -DBUILD_SHARED_LIBS=ON -DGLFW_BUILD_EXAMPLES=OFF -DGLFW_BUILD_TESTS=OFF -DGLFW_BUILD_DOCS=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_FLAGS="-I/usr/local/include" .. || exit 1
 cmake --build . || exit 1
 cd src
 strip libglfw.so
