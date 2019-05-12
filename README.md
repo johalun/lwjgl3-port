@@ -1,7 +1,15 @@
-# lwjgl3-port
-FreeBSD port of LWJGL3 (only includes dependencies needed for Minecraft client)
+# Minecraft 1.14
+This repo contains
+- Build script to fetch and compile code required to run Minecraft 1.14
+- Self-contained launcher script for Minecraft client
 
-### Notes
+
+Dependencies are 
+- https://github.com/johalun/lwjgl3
+- https://github.com/johalun/glfw
+- https://github.com/johalun/openal-soft
+
+### Instructions
 
 Step 1
 Read through the `build.sh` script. Install binary dependencies if necessary. 
