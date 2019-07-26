@@ -2,7 +2,7 @@
 
 echo 
 echo Make sure you install required build dependencies by executing
-echo pkg install git cmake libX11 libXrandr libXinerama libXcursor xinput apache-ant dyncall
+echo pkg install git gcc cmake libX11 libXrandr libXinerama libXcursor xinput apache-ant dyncall
 echo 
 # (there might be more that I've missed)
 
