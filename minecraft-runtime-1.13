@@ -1,6 +1,7 @@
 #!/bin/sh
 
-ROOT=/home/johannes/dev/lwjgl3-port
+#ROOT=/home/johannes/dev/lwjgl3-port
+ROOT=/mnt/data/home/pim/local/java/lwjgl3-port
 
 LWJGL_JLP_OVRD="${ROOT}/native-libs:${ROOT}/lwjgl3/bin/libs:/usr/local/lib:/usr/lib"
 
@@ -21,7 +22,7 @@ build_classpath() {
     for p in ${1}
     do
         case "${p}" in
-            *lwjgl-3.1.6.jar)
+            *lwjgl-3.*.jar)
 		echo set $p = ${LWJGL_OVRD}
 		cp="${cp}:${LWJGL_OVRD}"
 		;;

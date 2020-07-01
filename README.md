@@ -1,6 +1,6 @@
-# Minecraft 1.14
+# Minecraft 1.16.1 on FreeBSD
 This repo contains
-- Build script to fetch and compile code required to run Minecraft 1.14
+- Build script to fetch and compile code required to run Minecraft 1.16.1 (works with minecrafte versions from 1.13)
 - Self-contained launcher script for Minecraft client
 
 
