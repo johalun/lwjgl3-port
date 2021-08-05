@@ -1,6 +1,6 @@
-# Minecraft 1.16.1 on FreeBSD
+# Minecraft 1.13 to 1.17 on FreeBSD
 This repo contains
-- Build script to fetch and compile code required to run Minecraft 1.16.1 (works with minecrafte versions from 1.13)
+- Build script to fetch and compile code required to run Minecraft (works with minecrafte versions from 1.13)
 - Self-contained launcher script for Minecraft client
 
 
@@ -26,3 +26,5 @@ When build is complete, set `ROOT` in `minecraft-runtime-1.13` to this folder an
 From the Minecraft launcher, edit your profile and change the executable to 
 `<absolute-path-to-this-folder>/minecraft-runtime-1.13`
 
+For minecraft versions 1.17 and upwards you need to use at least openjdk16, this is provied in
+`<absolute-path-to-this-folder>/inecraft-runtime-openjdk16`
