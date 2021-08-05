@@ -27,4 +27,4 @@ From the Minecraft launcher, edit your profile and change the executable to
 `<absolute-path-to-this-folder>/minecraft-runtime-1.13`
 
 For minecraft versions 1.17 and upwards you need to use at least openjdk16, this is provied in
-`<absolute-path-to-this-folder>/inecraft-runtime-openjdk16`
+`<absolute-path-to-this-folder>/minecraft-runtime-openjdk16`
