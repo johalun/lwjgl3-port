@@ -21,7 +21,7 @@ build_classpath() {
     for p in ${1}
     do
         case "${p}" in
-            *lwjgl-3.1.6.jar)
+            *lwjgl3*.jar)
 		echo set $p = ${LWJGL_OVRD}
 		cp="${cp}:${LWJGL_OVRD}"
 		;;
